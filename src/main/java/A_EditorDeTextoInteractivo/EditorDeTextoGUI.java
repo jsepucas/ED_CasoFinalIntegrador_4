@@ -2,40 +2,75 @@ package A_EditorDeTextoInteractivo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
-public class EditorDeTextoGUI {
-    private JFrame frame;
-    private JTabbedPane tabbedPane;
+public class EditorDeTextoGUI extends JFrame {
+    private JTextArea textArea;
+    private JButton saveButton, openButton;
 
     public EditorDeTextoGUI() {
-        frame = new JFrame("Editor de Texto Avanzado");
-        tabbedPane = new JTabbedPane();
+        setTitle("Editor de Texto Interactivo");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initUI();
+        setVisible(true);
+    }
 
-        // Ejemplo de cómo agregar una nueva ventana (tab)
-        JTextArea textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        tabbedPane.addTab("Documento 1", scrollPane);
+    private void initUI() {
+        textArea = new JTextArea();
+        saveButton = new JButton("Guardar");
+        openButton = new JButton("Abrir");
 
-        // Seguimiento del ratón
-        textArea.addMouseMotionListener(new MouseAdapter() {
+        saveButton.addActionListener(new ActionListener() {
             @Override
-            public void mouseMoved(MouseEvent e) {
-                System.out.println("Posición del ratón: " + e.getX() + ", " + e.getY());
+            public void actionPerformed(ActionEvent e) {
+                saveTextToFile();
             }
         });
 
-        frame.add(tabbedPane);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setVisible(true);
+        openButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openTextFromFile();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(saveButton);
+        buttonPanel.add(openButton);
+
+        this.setLayout(new BorderLayout());
+        this.add(new JScrollPane(textArea), BorderLayout.CENTER);
+        this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    // Método para agregar una nueva ventana (tab)
-    public void agregarNuevaVentana(String titulo) {
-        JTextArea textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        tabbedPane.addTab(titulo, scrollPane);
+    private void saveTextToFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                writer.write(textArea.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void openTextFromFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                textArea.setText("");
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    textArea.append(line + "\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
