@@ -15,3 +15,16 @@ public class HerramientaDibujoGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configurarUI();
     }
+
+    private void configurarUI() {
+        lienzo = new JPanel();
+        lienzo.setBackground(Color.WHITE);
+
+        lienzo.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Graphics g = lienzo.getGraphics();
+                g.setColor(Color.BLACK);
+                g.fillOval(e.getX(), e.getY(), 4, 4);
+            }
+        });
