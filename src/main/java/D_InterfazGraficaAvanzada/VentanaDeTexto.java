@@ -20,3 +20,8 @@ public class VentanaDeTexto {
             }
         });
     }
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+}
