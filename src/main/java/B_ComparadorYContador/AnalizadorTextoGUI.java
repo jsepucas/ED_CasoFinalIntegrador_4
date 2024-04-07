@@ -19,3 +19,26 @@ public class AnalizadorTextoGUI extends JFrame {
         fileChooser = new JFileChooser();
         initUI();
     }
+
+    private void initUI() {
+        textArea = new JTextArea();
+        analyzeButton = new JButton("Analizar Texto");
+        loadButton = new JButton("Cargar Archivo");
+
+        loadButton.addActionListener(this::loadAction);
+        analyzeButton.addActionListener(this::analyzeAction);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(loadButton);
+        buttonPanel.add(analyzeButton);
+
+        setLayout(new BorderLayout());
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    
