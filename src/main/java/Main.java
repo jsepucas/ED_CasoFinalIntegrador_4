@@ -18,3 +18,8 @@ public class Main {
         AnalizadorDeTexto analizador = new AnalizadorDeTexto();
         BuscadorDePalabras buscador = new BuscadorDePalabras();
         AgendaDeContactos agenda = new AgendaDeContactos();
+
+        // Ejemplo
+        try {
+            File file1 = new File("ruta/al/archivo1.txt");
+            File file2 = new File("ruta/al/archivo2.txt");
