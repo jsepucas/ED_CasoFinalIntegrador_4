@@ -17,5 +17,20 @@ public class EditorDeTextoGUI extends JFrame {
         textArea = new JTextArea();
         fileChooser = new JFileChooser();
 
+        //Creacion del menu
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Archivo");
+        JMenuItem openItem = new JMenuItem("Abrir");
+        JMenuItem saveItem = new JMenuItem("Guardar");
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
+
+        //Accion para abrir el archivoo
+
+
+
 
 }
