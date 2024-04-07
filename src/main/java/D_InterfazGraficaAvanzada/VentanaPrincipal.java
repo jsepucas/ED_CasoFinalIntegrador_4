@@ -21,3 +21,18 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+    }
+}
+
+class VentanaDocumento extends JFrame {
+    public VentanaDocumento() {
+        super("Documento");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JTextArea areaTexto = new JTextArea();
+        add(new JScrollPane(areaTexto));
+        setLocationRelativeTo(null);
+    }
+}
