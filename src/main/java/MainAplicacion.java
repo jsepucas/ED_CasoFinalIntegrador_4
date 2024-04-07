@@ -18,3 +18,18 @@ public class MainAplicacion extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(0, 1));
 
+        JButton botonEditor = new JButton("Editor de Texto");
+        botonEditor.addActionListener(e -> abrirEditor());
+
+        JButton botonComparador = new JButton("Comparador de Archivos");
+        botonComparador.addActionListener(e -> abrirComparador());
+
+        JButton botonAnalizador = new JButton("Analizador de Texto");
+        botonAnalizador.addActionListener(e -> abrirAnalizadorTexto());
+
+        JButton botonBuscador = new JButton("Buscador de Palabras");
+        botonBuscador.addActionListener(e -> abrirBuscador());
+
+        JButton botonValidadorEmail = new JButton("Validador de Email");
+        botonValidadorEmail.addActionListener(e -> abrirValidadorEmail());
+
