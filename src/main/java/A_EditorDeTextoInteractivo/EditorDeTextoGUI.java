@@ -62,6 +62,18 @@ public class EditorDeTextoGUI extends JFrame {
 
         //Configuracion del layout
 
+        setLayout(new BorderLayout());
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new EditorDeTextoGUI();
+    }
+}
 
 
 
