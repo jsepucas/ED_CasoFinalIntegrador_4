@@ -1,11 +1,13 @@
-package C_BuscadorYAgenda;
+package C_BusquedaYGestion;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactoGUI extends JFrame {
-    private final List<ContactoGUI> contacts = new ArrayList<>();
+    private final List<Contact> contacts = new ArrayList<>();
     private final DefaultListModel<String> contactsModel = new DefaultListModel<>();
     private final JList<String> contactsList = new JList<>(contactsModel);
     private final JTextField nameField = new JTextField(20);
@@ -18,6 +20,7 @@ public class ContactoGUI extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Panel de entrada
         JPanel inputPanel = new JPanel(new GridLayout(3, 2));
         inputPanel.add(new JLabel("Nombre:"));
         inputPanel.add(nameField);
@@ -62,7 +65,7 @@ public class ContactoGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(ContactsGUI::new);
+        SwingUtilities.invokeLater(ContactoGUI::new);
     }
 
     static class Contact {
