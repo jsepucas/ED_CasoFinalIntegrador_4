@@ -55,8 +55,8 @@ public class AnalizadorTextoGUI extends JFrame {
 
     private void analyzeAction(ActionEvent event) {
         String content = textArea.getText();
-        Map<String, Long> wordCount = TextAnalyzer.analyzeText(content);
-        int totalWords = TextAnalyzer.totalWords(content);
+        Map<String, Integer> wordCount = AnalizadorDeTexto.analyzeText(content);
+        int totalWords = AnalizadorDeTexto.totalWords(content);
 
         StringBuilder analysisResult = new StringBuilder("Total de palabras: " + totalWords + "\n\nFrecuencia de palabras:\n");
         wordCount.forEach((word, count) -> analysisResult.append(word).append(": ").append(count).append("\n"));
@@ -65,6 +65,6 @@ public class AnalizadorTextoGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(TextAnalyzerGUI::new);
+        SwingUtilities.invokeLater(AnalizadorDeTexto::new);
     }
 }
