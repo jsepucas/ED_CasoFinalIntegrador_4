@@ -31,3 +31,11 @@ public class Main {
             long numPalabras = analizador.contarPalabras(file1);
             System.out.println("Número de palabras en el archivo1: " + numPalabras);
 
+
+            long numOcurrencias = buscador.buscarPalabra(file1, "palabraABuscar");
+            System.out.println("Número de ocurrencias de 'palabraABuscar' en el archivo1: " + numOcurrencias);
+
+            Contacto contacto = new Contacto("Nombre", "Email", "NumeroTelefono");
+            agenda.agregarContacto(contacto);
+            System.out.println("Contacto agregado a la agenda: " + contacto.getNombre());
+
