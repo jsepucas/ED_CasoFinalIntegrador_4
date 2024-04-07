@@ -3,16 +3,23 @@ package A_EditorDeTextoInteractivo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EditorDeTextoGUI extends JFrame {
     private JTextArea textArea;
-    private JButton saveButton, openButton;
+    private JButton saveButton, openButton, folderButton;
+    private JList<File> fileList;
+    private DefaultListModel<File> fileListModel;
 
     public EditorDeTextoGUI() {
         setTitle("Editor de Texto Interactivo");
-        setSize(600, 400);
+        setSize(800, 600); // Ajustado para mejor visualización
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initUI();
         setVisible(true);
@@ -22,27 +29,31 @@ public class EditorDeTextoGUI extends JFrame {
         textArea = new JTextArea();
         saveButton = new JButton("Guardar");
         openButton = new JButton("Abrir");
+        folderButton = new JButton("Seleccionar Carpeta");
 
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveTextToFile();
-            }
-        });
+        saveButton.addActionListener(e -> saveTextToFile());
+        openButton.addActionListener(e -> openTextFromFile());
+        folderButton.addActionListener(e -> selectFolder());
 
-        openButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openTextFromFile();
+        fileListModel = new DefaultListModel<>();
+        fileList = new JList<>(fileListModel);
+        fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fileList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                openSelectedFile();
             }
         });
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
         buttonPanel.add(openButton);
+        buttonPanel.add(folderButton);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(fileList), new JScrollPane(textArea));
+        splitPane.setDividerLocation(200); // Ajusta la posición inicial del divisor
 
         this.setLayout(new BorderLayout());
-        this.add(new JScrollPane(textArea), BorderLayout.CENTER);
+        this.add(splitPane, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
@@ -50,10 +61,10 @@ public class EditorDeTextoGUI extends JFrame {
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            try (FileWriter writer = new FileWriter(file)) {
                 writer.write(textArea.getText());
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error guardando el archivo: " + e.getMessage());
             }
         }
     }
@@ -62,15 +73,50 @@ public class EditorDeTextoGUI extends JFrame {
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                textArea.setText("");
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    textArea.append(line + "\n");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            readFile(file);
+        }
+    }
+
+    private void selectFolder() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File folder = fileChooser.getSelectedFile();
+            listTextFiles(folder.toPath());
+        }
+    }
+
+    private void listTextFiles(Path folder) {
+        try {
+            List<File> files = Files.walk(folder)
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toString().endsWith(".txt"))
+                    .map(Path::toFile)
+                    .collect(Collectors.toList());
+
+            fileListModel.clear();
+            files.forEach(fileListModel::addElement);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error listando archivos: " + e.getMessage());
+        }
+    }
+
+    private void openSelectedFile() {
+        File selectedFile = fileList.getSelectedValue();
+        if (selectedFile != null) {
+            readFile(selectedFile);
+        }
+    }
+
+    private void readFile(File file) {
+        try (FileReader reader = new FileReader(file)) {
+            textArea.setText("");
+            int c;
+            while ((c = reader.read()) != -1) {
+                textArea.append(String.valueOf((char) c));
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error leyendo el archivo: " + e.getMessage());
         }
     }
 }
