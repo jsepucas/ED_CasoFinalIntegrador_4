@@ -11,9 +11,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         // GUI
-        new EditorDeTextoGUI();
+        EditorDeTextoGUI gui = new EditorDeTextoGUI();
 
-        // instancias de ComparadorDeArchivos, AnalizadorDeTexto, BuscadorDePalabras yy AgendaDeContactos
+        // Crear instancias de ComparadorDeArchivos, AnalizadorDeTexto, BuscadorDePalabras y AgendaDeContactos
         ComparadorDeArchivos comparador = new ComparadorDeArchivos();
         AnalizadorDeTexto analizador = new AnalizadorDeTexto();
         BuscadorDePalabras buscador = new BuscadorDePalabras();
@@ -21,9 +21,8 @@ public class Main {
 
         // Ejemplo
         try {
-            File file1 = new File("ruta/al/archivo1.txt");
-            File file2 = new File("ruta/al/archivo2.txt");
-
+            File file1 = new File("ruta/al/tuArchivo1.txt");
+            File file2 = new File("ruta/al/tuArchivo2.txt");
 
             boolean sonIguales = comparador.comparar(file1, file2);
             System.out.println("Los archivos son iguales: " + sonIguales);
@@ -31,18 +30,18 @@ public class Main {
             long numPalabras = analizador.contarPalabras(file1);
             System.out.println("Número de palabras en el archivo1: " + numPalabras);
 
+            long numOcurrencias = buscador.buscarPalabra(file1, "tuPalabraABuscar");
+            System.out.println("Número de ocurrencias de 'tuPalabraABuscar' en el archivo1: " + numOcurrencias);
 
-            long numOcurrencias = buscador.buscarPalabra(file1, "palabraABuscar");
-            System.out.println("Número de ocurrencias de 'palabraABuscar' en el archivo1: " + numOcurrencias);
-
-            Contacto contacto = new Contacto("Nombre", "Email", "NumeroTelefono");
+            Contacto contacto = new Contacto("TuNombre", "TuEmail", "TuNumeroTelefono");
             agenda.agregarContacto(contacto);
             System.out.println("Contacto agregado a la agenda: " + contacto.getNombre());
 
+            // Agregar una nueva ventana (tab) a la GUI
+            gui.agregarNuevaVentana("Nueva ventana");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-
