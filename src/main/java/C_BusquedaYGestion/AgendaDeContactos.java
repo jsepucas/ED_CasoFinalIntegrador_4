@@ -41,6 +41,10 @@ class Contacto {
         this.numeroTelefono = numeroTelefono;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
 
 
 
