@@ -41,4 +41,14 @@ public class AnalizadorTextoGUI extends JFrame {
         setVisible(true);
     }
 
-    
+    private void loadAction(ActionEvent event) {
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                String content = Files.readString(file.toPath());
+                textArea.setText(content);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al cargar el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
