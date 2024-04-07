@@ -50,5 +50,10 @@ class Contacto {
     }
 
 
+    public String getNumeroTelefono() {
+        return numeroTelefono;
+    }
+}
+
 
 
