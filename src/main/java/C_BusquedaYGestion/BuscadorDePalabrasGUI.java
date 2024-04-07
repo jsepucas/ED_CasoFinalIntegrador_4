@@ -1,4 +1,4 @@
-package C_BuscadorYAgenda;
+package C_BusquedaYGestion;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,3 +74,9 @@ public class BuscadorDePalabrasGUI extends JFrame {
 
         JOptionPane.showMessageDialog(this, "La palabra '" + palabra + "' aparece " + contador + " veces en el texto.", "Resultado de la Búsqueda", JOptionPane.INFORMATION_MESSAGE);
     }
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(BuscadorDePalabrasGUI::new);
+    }
+}
