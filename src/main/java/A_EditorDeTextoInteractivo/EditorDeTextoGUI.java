@@ -46,6 +46,22 @@ public class EditorDeTextoGUI extends JFrame {
 
         //accion para guardarlo
 
+        saveItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int returnValue = fileChooser.showSaveDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    try {
+                        textArea.write(new FileWriter(selectedFile));
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        //Configuracion del layout
+
 
 
 
