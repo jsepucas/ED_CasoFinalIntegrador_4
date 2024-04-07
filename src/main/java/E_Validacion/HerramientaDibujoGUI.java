@@ -28,3 +28,12 @@ public class HerramientaDibujoGUI extends JFrame {
                 g.fillOval(e.getX(), e.getY(), 4, 4);
             }
         });
+
+        add(lienzo);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(HerramientaDibujoGUI::new);
+    }
+}
