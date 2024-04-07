@@ -20,3 +20,20 @@ public class ComparadorDeArchivos extends JFrame {
         fileChooser = new JFileChooser();
         initUI();
     }
+
+
+    private void initUI() {
+        compareButton = new JButton("Comparar Archivos");
+        resultArea = new JTextArea(10, 40);
+        resultArea.setEditable(false);
+
+        compareButton.addActionListener(this::compareAction);
+
+        setLayout(new BorderLayout());
+        add(compareButton, BorderLayout.NORTH);
+        add(new JScrollPane(resultArea), BorderLayout.CENTER);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
