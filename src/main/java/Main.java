@@ -39,3 +39,10 @@ public class Main {
             agenda.agregarContacto(contacto);
             System.out.println("Contacto agregado a la agenda: " + contacto.getNombre());
 
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
