@@ -19,5 +19,15 @@ public class AgendaDeContactos {
         contactos.remove(contacto);
     }
 
+    public Contacto buscarContactoPorNombre(String nombre) {
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+                return contacto;
+            }
+        }
+        return null;
+    }
+}
+
 
 
