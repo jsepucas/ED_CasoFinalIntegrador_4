@@ -57,4 +57,20 @@ public class BuscadorDePalabrasGUI extends JFrame {
         }
     }
 
-    
+    private void accionBuscar(ActionEvent evento) {
+        String palabra = campoDeBusqueda.getText().trim();
+        String texto = areaDeTexto.getText();
+        if (palabra.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una palabra para buscar.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Pattern patron = Pattern.compile("\\b" + Pattern.quote(palabra) + "\\b", Pattern.CASE_INSENSITIVE);
+        Matcher coincidencia = patron.matcher(texto);
+        int contador = 0;
+        while (coincidencia.find()) {
+            contador++;
+        }
+
+        JOptionPane.showMessageDialog(this, "La palabra '" + palabra + "' aparece " + contador + " veces en el texto.", "Resultado de la Búsqueda", JOptionPane.INFORMATION_MESSAGE);
+    }
