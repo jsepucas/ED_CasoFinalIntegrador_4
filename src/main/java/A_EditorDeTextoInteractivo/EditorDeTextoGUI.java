@@ -75,10 +75,3 @@ public class EditorDeTextoGUI extends JFrame {
     }
 }
 
-
-
-
-
-
-
-}
