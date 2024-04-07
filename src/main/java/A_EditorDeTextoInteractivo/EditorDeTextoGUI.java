@@ -30,6 +30,26 @@ public class EditorDeTextoGUI extends JFrame {
 
         //Accion para abrir el archivoo
 
+        openItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    try {
+                        textArea.read(new FileReader(selectedFile), null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        //accion para guardarlo
+
+
+
+
+
 
 
 
