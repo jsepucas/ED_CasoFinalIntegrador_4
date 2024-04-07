@@ -35,16 +35,20 @@ public class ValidadorEmailGUI extends JFrame {
         panel.add(campoEmail);
         panel.add(btnValidar);
         add(panel);
+
+        // Asegura que la ventana sea visible.
+        setVisible(true);
     }
 
     private boolean validarEmail(String email) {
+        // Expresión regular corregida para la validación de email.
         String regex = "^[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
-public static void main(String[] args) {
-    SwingUtilities.invokeLater(ValidadorEmailGUI::new);
-}
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(ValidadorEmailGUI::new);
+    }
 }
