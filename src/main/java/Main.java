@@ -1,6 +1,9 @@
 import A_EditorDeTextoInteractivo.EditorDeTextoGUI;
 import B_ComparadorYContador.ComparadorDeArchivos;
 import B_ComparadorYContador.AnalizadorDeTexto;
+import C_BusquedaYGestion.AgendaDeContactos;
+import C_BusquedaYGestion.BuscadorDePalabras;
+import C_BusquedaYGestion.Contacto;
 
 import java.io.File;
 import java.io.IOException;
