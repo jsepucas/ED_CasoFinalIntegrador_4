@@ -33,3 +33,22 @@ public class B_Main extends JFrame {
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
         setVisible(true);
     }
+
+    private void AnalizadorDeTexto(ActionEvent actionEvent) {
+    }
+
+    private void ComparadorDeArchivos(ActionEvent actionEvent) {
+    }
+
+    private void openComparator(ActionEvent event) {
+        SwingUtilities.invokeLater(ComparadorDeArchivos::new);
+    }
+
+    private void openAnalyzer(ActionEvent event) {
+        SwingUtilities.invokeLater(AnalizadorDeTexto::new);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(B_Main::new);
+    }
+}
