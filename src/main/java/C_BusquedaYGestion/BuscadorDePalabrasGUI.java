@@ -13,3 +13,11 @@ public class BuscadorDePalabrasGUI extends JFrame {
     private JTextField campoDeBusqueda;
     private JButton botonCargar, botonBuscar;
     private final JFileChooser selectorDeArchivos;
+
+    public BuscadorDePalabrasGUI() {
+        setTitle("Buscador de Palabras");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        selectorDeArchivos = new JFileChooser();
+        iniciarUI();
+    }
