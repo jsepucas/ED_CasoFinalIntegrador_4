@@ -8,3 +8,8 @@ import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+public class BuscadorDePalabrasGUI extends JFrame {
+    private JTextArea areaDeTexto;
+    private JTextField campoDeBusqueda;
+    private JButton botonCargar, botonBuscar;
+    private final JFileChooser selectorDeArchivos;
