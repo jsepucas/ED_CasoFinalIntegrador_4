@@ -52,3 +52,19 @@ public class AnalizadorTextoGUI extends JFrame {
             }
         }
     }
+
+    private void analyzeAction(ActionEvent event) {
+        String content = textArea.getText();
+        Map<String, Long> wordCount = TextAnalyzer.analyzeText(content);
+        int totalWords = TextAnalyzer.totalWords(content);
+
+        StringBuilder analysisResult = new StringBuilder("Total de palabras: " + totalWords + "\n\nFrecuencia de palabras:\n");
+        wordCount.forEach((word, count) -> analysisResult.append(word).append(": ").append(count).append("\n"));
+
+        JOptionPane.showMessageDialog(this, analysisResult.toString(), "Resultado del Análisis", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(TextAnalyzerGUI::new);
+    }
+}
