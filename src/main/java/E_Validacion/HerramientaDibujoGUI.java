@@ -12,7 +12,7 @@ public class HerramientaDibujoGUI extends JFrame {
     public HerramientaDibujoGUI() {
         setTitle("Herramienta de Dibujo");
         setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         configurarUI();
     }
 

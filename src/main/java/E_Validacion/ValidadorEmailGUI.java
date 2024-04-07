@@ -13,7 +13,7 @@ public class ValidadorEmailGUI extends JFrame {
     public ValidadorEmailGUI() {
         setTitle("Validador de Email");
         setSize(400, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();
         JLabel etiqueta = new JLabel("Email:");

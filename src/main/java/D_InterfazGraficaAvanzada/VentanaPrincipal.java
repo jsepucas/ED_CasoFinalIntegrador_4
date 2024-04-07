@@ -34,6 +34,7 @@ class VentanaDocumento extends JFrame {
         JLabel posicionRaton = new JLabel("Posición: ");
         add(posicionRaton, BorderLayout.SOUTH);
 
+
         // Seguimiento del ratón
         areaTexto.addMouseMotionListener(new MouseMotionAdapter() {
             @Override

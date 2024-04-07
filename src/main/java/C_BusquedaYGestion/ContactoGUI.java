@@ -18,7 +18,7 @@ public class ContactoGUI extends JFrame {
         setTitle("Agenda de Contactos");
         setLayout(new BorderLayout());
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Panel de entrada
         JPanel inputPanel = new JPanel(new GridLayout(3, 2));
