@@ -2,36 +2,49 @@ package E_Validacion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidadorEmailGUI extends JFrame {
     private JTextField campoEmail;
-    private JLabel etiquetaValidacion;
 
     public ValidadorEmailGUI() {
         setTitle("Validador de Email");
-        setSize(300, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        configurarUI();
+        setSize(400, 200);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        JLabel etiqueta = new JLabel("Email:");
+        campoEmail = new JTextField(20);
+        JButton btnValidar = new JButton("Validar");
+
+        btnValidar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validarEmail(campoEmail.getText())) {
+                    JOptionPane.showMessageDialog(panel, "El email es válido.", "Email Válido", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(panel, "El email no es válido.", "Email Inválido", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        panel.add(etiqueta);
+        panel.add(campoEmail);
+        panel.add(btnValidar);
+        add(panel);
     }
 
-    private void configurarUI() {
+    private boolean validarEmail(String email) {
+        String regex = "^[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
-    private void validarEmail(String email) {
-        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        if (email.matches(regex)) {
-            etiquetaValidacion.setText("Email válido");
-            etiquetaValidacion.setForeground(Color.GREEN);
-        } else {
-            etiquetaValidacion.setText("Email no válido");
-            etiquetaValidacion.setForeground(Color.RED);
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ValidadorEmailGUI::new);
-    }
+public static void main(String[] args) {
+    SwingUtilities.invokeLater(ValidadorEmailGUI::new);
 }
-
+}
