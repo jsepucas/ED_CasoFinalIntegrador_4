@@ -23,7 +23,7 @@ public class MainAplicacion extends JFrame {
         panelFondo.setLayout(new GridLayout(0, 1, 10, 10));
         panelFondo.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        JButton botonEditor = Decoracion.crearBotonDecorado("Editor de Texto");
+        JButton botonEditor = Decoracion.crearBotonDecorado("Editor de Texto : )");
         botonEditor.addActionListener(e -> abrirEditor());
 
         JButton botonComparador = Decoracion.crearBotonDecorado("Comparador de Archivos");
