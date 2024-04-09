@@ -19,7 +19,7 @@ public class EditorDeTextoGUI extends JFrame {
 
     public EditorDeTextoGUI() {
         setTitle("Editor de Texto Interactivo");
-        setSize(800, 600); // Ajustado para mejor visualización
+        setSize(700, 500); // Ajustado para mejor visualización
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initUI();
         setVisible(true);
@@ -50,7 +50,7 @@ public class EditorDeTextoGUI extends JFrame {
         buttonPanel.add(folderButton);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(fileList), new JScrollPane(textArea));
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerLocation(125);
 
         this.setLayout(new BorderLayout());
         this.add(splitPane, BorderLayout.CENTER);
