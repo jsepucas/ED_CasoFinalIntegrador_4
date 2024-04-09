@@ -45,21 +45,42 @@ public class Decoracion {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-
-            // Dibuja el gradiente de fondo
+            //Gradiente del fondo
             Graphics2D g2d = (Graphics2D) g;
             GradientPaint gradiente = new GradientPaint(0, 0, Color.BLUE, 0, getHeight(), Color.WHITE);
             g2d.setPaint(gradiente);
             g2d.fillRect(0, 0, getWidth(), getHeight());
 
-            // Dibuja el logo de UAX
-            g2d.setColor(Color.BLACK);
+            //Letras  UAX
+
+
             g2d.setFont(new Font("SansSerif", Font.BOLD, 77));
-            // Centrar el texto
             FontMetrics metrics = g2d.getFontMetrics();
-            int x = (getWidth() - metrics.stringWidth("UAX")) / 2;
+            String textU = "U";
+            String textA = "A";
+            String textX = "X";
+
+
+            int xU = (getWidth() - metrics.stringWidth(textU + textA + textX)) / 2;
             int y = ((getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
-            g2d.drawString("UAX", x, y);
+
+
+            g2d.setColor(Color.BLACK);
+            g2d.drawString(textU, xU, y);
+
+
+            int xA = xU + metrics.stringWidth(textU);
+
+
+            g2d.setColor(Color.BLACK);
+            g2d.drawString(textA, xA, y);
+
+
+            int xX = xA + metrics.stringWidth(textA);
+
+
+            g2d.setColor(Color.BLUE);
+            g2d.drawString(textX, xX, y);
         }
     }
 }
