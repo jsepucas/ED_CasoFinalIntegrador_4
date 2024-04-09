@@ -5,20 +5,28 @@ import java.awt.*;
 
 public class Decoracion {
 
-    public static void aplicarDecoracion(JFrame ventana) {
-        // Aplica un tema general si es necesario
-        establecerLookFeel();
 
-        // Configura el fondo y los estilos de los componentes
-        PanelConFondo panelFondo = new PanelConFondo();
-        ventana.setContentPane(panelFondo);
+
+    public static JPanel crearPanelPrincipalConLogo(ImageIcon logo) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setOpaque(false);
+
+        JLabel etiquetaLogo = new JLabel(logo);
+        etiquetaLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(etiquetaLogo);
+
+        panel.add(Box.createVerticalStrut(20)); // Espacio entre el logo y los botones
+
+        return panel;
     }
 
     public static JButton crearBotonDecorado(String texto) {
         JButton boton = new JButton(texto);
-        // Personalización del botón
         boton.setPreferredSize(new Dimension(200, 50));
-        // Añade más estilos si es necesario
+        boton.setMaximumSize(new Dimension(200, 50));
+        boton.setAlignmentX(Component.CENTER_ALIGNMENT); // Alinear botones en el centro
+        // Estilos adicionales aquí, como colores, fuentes, etc.
         return boton;
     }
 
@@ -38,10 +46,20 @@ public class Decoracion {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
+            // Dibuja el gradiente de fondo
             Graphics2D g2d = (Graphics2D) g;
             GradientPaint gradiente = new GradientPaint(0, 0, Color.BLUE, 0, getHeight(), Color.WHITE);
             g2d.setPaint(gradiente);
             g2d.fillRect(0, 0, getWidth(), getHeight());
+
+            // Dibuja el logo de UAX
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font("SansSerif", Font.BOLD, 77));
+            // Centrar el texto
+            FontMetrics metrics = g2d.getFontMetrics();
+            int x = (getWidth() - metrics.stringWidth("UAX")) / 2;
+            int y = ((getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
+            g2d.drawString("UAX", x, y);
         }
     }
 }

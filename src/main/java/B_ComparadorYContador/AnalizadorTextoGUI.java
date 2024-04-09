@@ -14,7 +14,7 @@ public class AnalizadorTextoGUI extends JFrame {
 
     public AnalizadorTextoGUI() {
         setTitle("Analizador de Texto");
-        setSize(700, 1000);
+        setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fileChooser = new JFileChooser();
         initUI();
