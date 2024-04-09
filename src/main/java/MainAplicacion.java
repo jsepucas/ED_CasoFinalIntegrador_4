@@ -23,19 +23,19 @@ public class MainAplicacion extends JFrame {
         panelFondo.setLayout(new GridLayout(0, 1, 10, 10));
         panelFondo.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        JButton botonEditor = Decoracion.crearBotonDecorado("Editor de Texto :)");
+        JButton botonEditor = Decoracion.crearBotonDecorado("Editor de Texto \uD83D\uDCC7");
         botonEditor.addActionListener(e -> abrirEditor());
 
-        JButton botonComparador = Decoracion.crearBotonDecorado("Comparador de Archivos");
+        JButton botonComparador = Decoracion.crearBotonDecorado("Comparador de Archivos ");
         botonComparador.addActionListener(e -> abrirComparador());
 
-        JButton botonAnalizador = Decoracion.crearBotonDecorado("Analizador de Texto");
+        JButton botonAnalizador = Decoracion.crearBotonDecorado("Analizador de Texto   ");
         botonAnalizador.addActionListener(e -> abrirAnalizadorTexto());
 
-        JButton botonBuscador = Decoracion.crearBotonDecorado("Buscador de Palabras");
+        JButton botonBuscador = Decoracion.crearBotonDecorado("Buscador de Palabras \uD83D\uDD0E");
         botonBuscador.addActionListener(e -> abrirBuscador());
 
-        JButton botonValidadorEmail = Decoracion.crearBotonDecorado("Validador de Email");
+        JButton botonValidadorEmail = Decoracion.crearBotonDecorado("Validador de Email   \uD83D\uDCE7  ");
         botonValidadorEmail.addActionListener(e -> abrirValidadorEmail());
 
         panelFondo.add(botonEditor);
