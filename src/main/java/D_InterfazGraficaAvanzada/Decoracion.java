@@ -37,7 +37,7 @@ public class Decoracion {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            // Personaliza tu fondo aquí
+
             Graphics2D g2d = (Graphics2D) g;
             GradientPaint gradiente = new GradientPaint(0, 0, Color.BLUE, 0, getHeight(), Color.WHITE);
             g2d.setPaint(gradiente);
